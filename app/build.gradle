@@ -22,6 +22,7 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
 }
 
 dependencies {
@@ -30,5 +31,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.makeramen:roundedimageview:2.2.1'
-//    compile files('libs/sinch-android-rtc-3.9.3.jar')
+
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
+
 }

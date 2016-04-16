@@ -76,4 +76,14 @@
         android:background="@drawable/callbutton"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/include_share_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/view_share"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

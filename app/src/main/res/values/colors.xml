@@ -8,4 +8,8 @@
     <color name="greyish">#fff2f1f2</color>
     <color name="gray_transparent">#CC111111</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whatsapp_green">#31c749</color>
+    <color name="messenger">#31c749</color>
+    <color name="message">#1887fb</color>
+    <color name="email">#436f94</color>
 </resources>

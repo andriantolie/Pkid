@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlViewShare"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/share_outside_margin"
+    android:layout_marginRight="@dimen/share_outside_margin"
+    android:layout_marginTop="@dimen/share_outside_margin"
+    android:layout_marginBottom="@dimen/share_outside_margin"
+    android:padding="10dp"
+    android:background="@drawable/round_view_share" >
+
+    <TextView
+        android:id="@+id/tvShareVideoCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Share Video Call" />
+
+    <ImageView
+        android:id="@+id/btnWhatsapp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/share_btn_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tvShareVideoCall"
+        android:layout_marginLeft="@dimen/share_inside_margin"
+        android:layout_marginRight="@dimen/share_inside_margin"
+        android:src="@drawable/button_whatsapp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        />
+
+    <ImageView
+        android:id="@+id/btnMessenger"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/share_btn_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnWhatsapp"
+        android:layout_marginLeft="@dimen/share_inside_margin"
+        android:layout_marginRight="@dimen/share_inside_margin"
+        android:src="@drawable/button_messenger"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        />
+
+    <ImageView
+        android:id="@+id/btnMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/share_btn_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnMessenger"
+        android:layout_marginLeft="@dimen/share_inside_margin"
+        android:layout_marginRight="@dimen/share_inside_margin"
+        android:src="@drawable/button_message"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        />
+
+    <ImageView
+        android:id="@+id/btnEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/share_btn_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/btnMessage"
+        android:layout_marginLeft="@dimen/share_inside_margin"
+        android:layout_marginRight="@dimen/share_inside_margin"
+        android:src="@drawable/button_email"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        />
+
+</RelativeLayout>

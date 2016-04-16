@@ -18,4 +18,7 @@
     <dimen name="color_picker_handle_circle_width">12dp</dimen>
     <dimen name="color_picker_handle_circle_border_width">2dp</dimen>
 
+    <dimen name="share_outside_margin">20dp</dimen>
+    <dimen name="share_inside_margin">20dp</dimen>
+    <dimen name="share_btn_height">60dp</dimen>
 </resources>

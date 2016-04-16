@@ -8,6 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -28,6 +29,10 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
     TextView tvOnboarding;
     TextView tvPlayWithYourChild;
 
+    View include_share_dialog;
+
+    RelativeLayout rlShare;
+
     /**
      * Called when the activity is first created.
      */
@@ -37,6 +42,8 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
         setContentView(R.layout.activity_on_boarding);
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
+
+        rlShare = (RelativeLayout) findViewById(R.id.rlViewShare);
 
         tvOnboarding = (TextView) findViewById(R.id.tvOnboarding);
         tvPlayWithYourChild = (TextView) findViewById(R.id.tvPlayWithYourChild);
