@@ -1,5 +1,6 @@
 package com.example.altitudelabs.pkid;
 
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -43,7 +45,7 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
 
-        rlShare = (RelativeLayout) findViewById(R.id.rlViewShare);
+        rlShare = (RelativeLayout) findViewById(R.id.include_share_dialog);
 
         tvOnboarding = (TextView) findViewById(R.id.tvOnboarding);
         tvPlayWithYourChild = (TextView) findViewById(R.id.tvPlayWithYourChild);
@@ -64,6 +66,7 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
             @Override
             public void onClick(View v) {
                 //TODO go to next.
+                rlShare.setVisibility(View.VISIBLE);
             }
         });
 
@@ -80,6 +83,23 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mp) {
                 mVideoView.start(); //need to make transition seamless.
+            }
+        });
+
+        ImageView whatsappButton = (ImageView)rlShare.findViewById(R.id.btnWhatsapp);
+        whatsappButton.setClickable(true);
+        whatsappButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+//                browserIntent.setData(Uri.parse("http://familytime.com/1a2b3c"));
+//                startActivity(browserIntent);
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.setPackage("com.whatsapp");
+                share.putExtra(Intent.EXTRA_TEXT, "http://familytime.com/1a2b3c");
+
+                startActivity(share);
             }
         });
 

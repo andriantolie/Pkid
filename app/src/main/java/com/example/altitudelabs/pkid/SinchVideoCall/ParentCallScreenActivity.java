@@ -1,13 +1,16 @@
 package com.example.altitudelabs.pkid.SinchVideoCall;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import com.example.altitudelabs.pkid.R;
 import com.sinch.android.rtc.AudioController;
@@ -17,12 +20,15 @@ import com.sinch.android.rtc.calling.CallEndCause;
 import com.sinch.android.rtc.video.VideoCallListener;
 import com.sinch.android.rtc.video.VideoController;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ParentCallScreenActivity extends BaseActivity {
+public class ParentCallScreenActivity extends BaseActivity implements OnClickListener {
 
     static final String TAG = CallScreenActivity.class.getSimpleName();
     static final String CALL_START_TIME = "callStartTime";
@@ -36,6 +42,21 @@ public class ParentCallScreenActivity extends BaseActivity {
     private long mCallStart = 0;
     private boolean mAddedListener = false;
     private boolean mVideoViewsAdded = false;
+
+    private ImageButton mColorButton1;
+    private ImageButton mColorButton2;
+    private ImageButton mColorButton3;
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_color_1) {
+
+        } else if (v.getId() == R.id.btn_color_2) {
+            endCall();
+        }else if (v.getId() == R.id.btn_color_3) {
+            takeScreenshotAndShare();
+        }
+    }
 
 
     private class UpdateCallDurationTask extends TimerTask {
@@ -69,19 +90,18 @@ public class ParentCallScreenActivity extends BaseActivity {
         setContentView(R.layout.parent_callscreen);
 
         mAudioPlayer = new AudioPlayer(this);
-        Button endCallButton = (Button) findViewById(R.id.hangupButton);
 
-        endCallButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                endCall();
-            }
-        });
 
         mCallId = getIntent().getStringExtra(SinchService.CALL_ID);
         if (savedInstanceState == null) {
             mCallStart = System.currentTimeMillis();
         }
+        mColorButton1 = (ImageButton)findViewById(R.id.btn_color_1);
+        mColorButton1.setOnClickListener(this);
+        mColorButton2 = (ImageButton)findViewById(R.id.btn_color_2);
+        mColorButton2.setOnClickListener(this);
+        mColorButton3 = (ImageButton)findViewById(R.id.btn_color_3);
+        mColorButton3.setOnClickListener(this);
     }
 
     @Override
@@ -166,7 +186,7 @@ public class ParentCallScreenActivity extends BaseActivity {
 
         final VideoController vc = getSinchServiceInterface().getVideoController();
         if (vc != null) {
-            RelativeLayout localView = (RelativeLayout) findViewById(R.id.localVideo);
+            FrameLayout localView = (FrameLayout) findViewById(R.id.localVideo);
             localView.addView(vc.getLocalView());
             localView.setOnClickListener(new OnClickListener() {
                 @Override
@@ -175,7 +195,7 @@ public class ParentCallScreenActivity extends BaseActivity {
                 }
             });
 
-            LinearLayout view = (LinearLayout) findViewById(R.id.remoteVideo);
+            FrameLayout view = (FrameLayout) findViewById(R.id.remoteVideo);
             view.addView(vc.getRemoteView());
             mVideoViewsAdded = true;
         }
@@ -188,10 +208,10 @@ public class ParentCallScreenActivity extends BaseActivity {
 
         VideoController vc = getSinchServiceInterface().getVideoController();
         if (vc != null) {
-            LinearLayout view = (LinearLayout) findViewById(R.id.remoteVideo);
+            FrameLayout view = (FrameLayout) findViewById(R.id.remoteVideo);
             view.removeView(vc.getRemoteView());
 
-            RelativeLayout localView = (RelativeLayout) findViewById(R.id.localVideo);
+            FrameLayout localView = (FrameLayout) findViewById(R.id.localVideo);
             localView.removeView(vc.getLocalView());
             mVideoViewsAdded = false;
         }
@@ -238,6 +258,41 @@ public class ParentCallScreenActivity extends BaseActivity {
         public void onVideoTrackAdded(Call call) {
             Log.d(TAG, "Video track added");
             addVideoViews();
+        }
+    }
+
+    private void takeScreenshotAndShare() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+
+            final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("image/jpg");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(imageFile));
+            startActivity(Intent.createChooser(shareIntent, "Share image using"));
+
+//            openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
         }
     }
 }

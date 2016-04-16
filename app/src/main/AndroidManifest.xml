@@ -7,6 +7,7 @@
         android:required="false"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -50,7 +51,7 @@
                 <action android:name="android.intent.action.VIEW"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
                 <category android:name="android.intent.category.BROWSABLE"></category>
-                <data android:scheme="http" android:host="www.yahoo.com" ></data>
+                <data android:scheme="http" android:host="familytime.com" ></data>
             </intent-filter>
             </activity>
         <activity android:name=".SinchVideoCall.IncomingCallScreenActivity" android:screenOrientation="portrait"

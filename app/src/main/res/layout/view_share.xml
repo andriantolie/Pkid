@@ -18,7 +18,8 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="Share Video Call" />
+        android:text="Share Video Call"
+        android:textSize="20dp"/>
 
     <ImageView
         android:id="@+id/btnWhatsapp"
