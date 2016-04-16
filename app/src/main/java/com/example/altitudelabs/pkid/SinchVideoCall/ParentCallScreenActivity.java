@@ -8,7 +8,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.altitudelabs.pkid.R;
 import com.sinch.android.rtc.AudioController;
@@ -208,7 +207,7 @@ public class ParentCallScreenActivity extends BaseActivity {
             mAudioPlayer.stopProgressTone();
             setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
             String endMsg = "Call ended: " + call.getDetails().toString();
-            Toast.makeText(ParentCallScreenActivity.this, endMsg, Toast.LENGTH_LONG).show();
+//            Toast.makeText(ParentCallScreenActivity.this, endMsg, Toast.LENGTH_LONG).show();
 
             endCall();
         }

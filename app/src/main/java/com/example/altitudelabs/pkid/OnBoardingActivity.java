@@ -1,6 +1,5 @@
 package com.example.altitudelabs.pkid;
 
-import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -12,10 +11,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.altitudelabs.pkid.SinchVideoCall.BaseActivity;
+import com.example.altitudelabs.pkid.SinchVideoCall.SinchService;
+import com.sinch.android.rtc.SinchError;
+
 
 //Implement SurfaceHolder interface to Play video
 //Implement this interface to receive information about changes to the surface
-public class OnBoardingActivity extends Activity implements SurfaceHolder.Callback {
+public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Callback ,SinchService.StartFailedListener {
 
     VideoView mVideoView;
 
@@ -106,7 +109,31 @@ public class OnBoardingActivity extends Activity implements SurfaceHolder.Callba
     @Override
     public void onDestroy(){
         super.onDestroy();
+        if (getSinchServiceInterface() != null) {
+            getSinchServiceInterface().stopClient();
+        }
         mVideoView.stopPlayback();
+    }
+
+    @Override
+    protected void onServiceConnected() {
+        getSinchServiceInterface().setStartListener(this);
+        if (!getSinchServiceInterface().isStarted()) {
+            getSinchServiceInterface().startClient("parent");
+        } else {
+            getSinchServiceInterface().stopClient();
+            getSinchServiceInterface().startClient("parent");
+        }
+    }
+
+
+    @Override
+    public void onStartFailed(SinchError error) {
+
+    }
+
+    @Override
+    public void onStarted() {
     }
 
 }

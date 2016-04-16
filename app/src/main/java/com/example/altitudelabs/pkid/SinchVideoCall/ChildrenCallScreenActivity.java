@@ -1,16 +1,16 @@
 package com.example.altitudelabs.pkid.SinchVideoCall;
 
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.example.altitudelabs.pkid.DrawingView;
-import com.example.altitudelabs.pkid.MediaEditColorPickerView;
 import com.example.altitudelabs.pkid.R;
 import com.sinch.android.rtc.AudioController;
 import com.sinch.android.rtc.PushPair;
@@ -25,14 +25,31 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ChildrenCallScreenActivity extends BaseActivity implements SinchService.StartFailedListener, MediaEditColorPickerView.MediaEditColorPickerListener {
+public class ChildrenCallScreenActivity extends BaseActivity implements SinchService.StartFailedListener, View.OnClickListener {
+
+    @Override
+    public void onClick(View v) {
+        mColorButton1.setImageResource(R.drawable.green_75);
+        mColorButton2.setImageResource(R.drawable.orange_75);
+        mColorButton3.setImageResource(R.drawable.blue_75);
+        if (v.getId() == R.id.btn_color_1) {
+            mColorButton1.setImageResource(R.drawable.green);
+            mDrawingView.getDrawingController().setPaintColor(Color.GREEN);
+        } else if (v.getId() == R.id.btn_color_2) {
+            mColorButton2.setImageResource(R.drawable.orange);
+            mDrawingView.getDrawingController().setPaintColor(Color.RED);
+        }else if (v.getId() == R.id.btn_color_3) {
+            mColorButton3.setImageResource(R.drawable.blue);
+            mDrawingView.getDrawingController().setPaintColor(Color.BLUE);
+        }
+    }
+
 
     static final String TAG = CallScreenActivity.class.getSimpleName();
     static final String CALL_START_TIME = "callStartTime";
     static final String ADDED_LISTENER = "addedListener";
 
     private DrawingView mDrawingView;
-    private MediaEditColorPickerView mMediaEditColorPickerView;
 
     private AudioPlayer mAudioPlayer;
     private Timer mTimer;
@@ -42,6 +59,11 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
     private long mCallStart = 0;
     private boolean mAddedListener = false;
     private boolean mVideoViewsAdded = false;
+
+    private ImageButton mColorButton1;
+    private ImageButton mColorButton2;
+    private ImageButton mColorButton3;
+
 
     @Override
     public void onStartFailed(SinchError error) {
@@ -53,10 +75,6 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
 
     }
 
-    @Override
-    public void onColorChanged(View v, int color) {
-        mDrawingView.getDrawingController().setPaintColor(color);
-    }
 
     private class UpdateCallDurationTask extends TimerTask {
 
@@ -89,22 +107,20 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
         setContentView(R.layout.children_callscreen);
 
         mAudioPlayer = new AudioPlayer(this);
-        Button endCallButton = (Button) findViewById(R.id.hangupButton);
-
-        endCallButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                endCall();
-            }
-        });
 
         mCallId = getIntent().getStringExtra(SinchService.CALL_ID);
         if (savedInstanceState == null) {
             mCallStart = System.currentTimeMillis();
         }
         mDrawingView = (DrawingView)findViewById(R.id.view_drawing);
-        mMediaEditColorPickerView = (MediaEditColorPickerView)findViewById(R.id.view_color_picker);
-        mMediaEditColorPickerView.setMediaEditColorPickerListener(this);
+
+        mColorButton1 = (ImageButton)findViewById(R.id.btn_color_1);
+        mColorButton1.setOnClickListener(this);
+        mColorButton2 = (ImageButton)findViewById(R.id.btn_color_2);
+        mColorButton2.setOnClickListener(this);
+        mColorButton3 = (ImageButton)findViewById(R.id.btn_color_3);
+        mColorButton3.setOnClickListener(this);
+
     }
 
     @Override
@@ -191,6 +207,8 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
         if (vc != null) {
 
             FrameLayout view = (FrameLayout) findViewById(R.id.remoteVideo);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            view.setLayoutParams(lp);
             view.addView(vc.getRemoteView());
             mVideoViewsAdded = true;
         }
@@ -220,7 +238,7 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
             mAudioPlayer.stopProgressTone();
             setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
             String endMsg = "Call ended: " + call.getDetails().toString();
-            Toast.makeText(ChildrenCallScreenActivity.this, endMsg, Toast.LENGTH_LONG).show();
+//            Toast.makeText(ChildrenCallScreenActivity.this, endMsg, Toast.LENGTH_LONG).show();
 
             endCall();
         }

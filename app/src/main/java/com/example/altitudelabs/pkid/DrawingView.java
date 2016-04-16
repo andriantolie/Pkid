@@ -15,8 +15,8 @@ import java.util.Stack;
 public class DrawingView extends View {
     private Path mDrawPath;
     private Paint mDrawPaint;
-    private int mPaintColor = Color.WHITE;
-    private float mPaintWidth = 10;
+    private int mPaintColor = Color.GREEN;
+    private float mPaintWidth = 20;
     private Canvas mDrawCanvas;
     private DrawingController mDrawingController;
     private DrawingListener mDrawingListener;
