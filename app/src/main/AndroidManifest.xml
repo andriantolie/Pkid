@@ -21,9 +21,17 @@
         android:theme="@style/AppTheme">
         <service android:name=".SinchVideoCall.SinchService"></service>
         <activity android:name=".SinchVideoCall.LoginActivity"/>
-        <activity android:name=".SinchVideoCall.DummyActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <!--<activity android:name=".SinchVideoCall.DummyActivity">-->
+        <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".OnBoardingActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
