@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dip"
+    android:background="#ffffffff">
+
+<FrameLayout android:id="@+id/remoteVideo" android:layout_width="wrap_content"
+              android:layout_height="match_parent" android:layout_alignParentLeft="true"
+              android:layout_alignParentTop="true" android:orientation="horizontal"/>
+
+    <com.example.altitudelabs.pkid.DrawingView
+        android:id="@+id/view_drawing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/hangupButton"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_end"/>
+    <com.example.altitudelabs.pkid.MediaEditColorPickerView
+        android:id="@+id/view_color_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/hangupButton"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
+

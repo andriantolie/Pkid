@@ -2,4 +2,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- color picker -->
+    <dimen name="color_picker_triangle_width">12dp</dimen>
+    <dimen name="color_picker_triangle_height">6dp</dimen>
+    <dimen name="color_picker_width">188dp</dimen>
+    <dimen name="color_picker_height">12dp</dimen>
+    <dimen name="color_picker_corner_radius">6dp</dimen>
+    <dimen name="color_picker_border_width">2dp</dimen>
+    <dimen name="color_picker_margin">12dp</dimen>
+
+    <!-- Same as handle circle width -->
+    <dimen name="color_picker_handle_stick_width">2dp</dimen>
+    <dimen name="color_picker_handle_stick_height">18dp</dimen>
+    <dimen name="color_picker_handle_circle_width">12dp</dimen>
+    <dimen name="color_picker_handle_circle_border_width">2dp</dimen>
+
 </resources>

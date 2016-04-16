@@ -186,10 +186,15 @@ public class SinchService extends Service {
         @Override
         public void onIncomingCall(CallClient callClient, Call call) {
             Log.d(TAG, "Incoming call");
-            Intent intent = new Intent(SinchService.this, IncomingCallScreenActivity.class);
-            intent.putExtra(CALL_ID, call.getCallId());
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            SinchService.this.startActivity(intent);
+            if (call != null) {
+                call.answer();
+                Intent intent = new Intent(SinchService.this, ParentCallScreenActivity.class);
+                intent.putExtra(CALL_ID, call.getCallId());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                SinchService.this.startActivity(intent);
+            }
+
         }
     }
 

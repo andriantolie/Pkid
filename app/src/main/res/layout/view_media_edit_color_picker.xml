@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+   <RelativeLayout
+       android:id="@+id/view_color_picker_content"
+       android:layout_centerHorizontal="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:paddingLeft="@dimen/color_picker_handle_circle_width"
+       android:paddingRight="@dimen/color_picker_handle_circle_width">
+
+       <com.example.altitudelabs.pkid.RoundedColorPickerView
+           android:id="@+id/iv_color_picker"
+           android:layout_width="@dimen/color_picker_width"
+           android:layout_height="@dimen/color_picker_height"
+           android:layout_alignParentTop="true"
+           android:layout_centerHorizontal="true"
+           android:scaleType="fitXY"/>
+       <View
+           android:id="@+id/view_handle_stick"
+           android:layout_width="@dimen/color_picker_handle_stick_width"
+           android:layout_height="@dimen/color_picker_handle_stick_height"
+           android:background="#fff"
+           android:layout_alignParentTop="true"/>
+   </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/view_handle_circle"
+        android:layout_below="@id/view_color_picker_content"
+        android:layout_width="@dimen/color_picker_handle_circle_width"
+        android:layout_height="@dimen/color_picker_handle_circle_width"
+        app:civ_border_color="#fff"
+        app:civ_border_width="@dimen/color_picker_handle_circle_border_width" />
+
+
+</RelativeLayout>

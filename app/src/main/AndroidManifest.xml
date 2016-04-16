@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.altitudelabs.pkid">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,14 +20,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name=".SinchVideoCall.SinchService"></service>
-        <activity android:name=".SinchVideoCall.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".SinchVideoCall.LoginActivity"/>
+        <activity android:name=".SinchVideoCall.DummyActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
-        <activity android:name=".SinchVideoCall.CallScreenActivity"/>
+        <activity android:name=".SinchVideoCall.CallScreenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SinchVideoCall.ParentCallScreenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SinchVideoCall.ChildrenCallScreenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SinchVideoCall.ParentMainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SinchVideoCall.ChildrenMainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:scheme="http" android:host="www.yahoo.com" ></data>
+            </intent-filter>
+            </activity>
         <activity android:name=".SinchVideoCall.IncomingCallScreenActivity" android:screenOrientation="portrait"
             android:noHistory="true"/>
         <activity android:name=".SinchVideoCall.PlaceCallActivity" android:screenOrientation="portrait"/>
