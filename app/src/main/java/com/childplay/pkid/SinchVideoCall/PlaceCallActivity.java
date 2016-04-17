@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.altitudelabs.pkid.R;
+import com.childplay.pkid.R;
 import com.sinch.android.rtc.calling.Call;
 
 public class PlaceCallActivity extends BaseActivity {

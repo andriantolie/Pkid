@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid;
+package com.childplay.pkid;
 
 import org.junit.Test;
 

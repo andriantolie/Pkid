@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.altitudelabs.pkid.R;
+import com.childplay.pkid.R;
 
 /**
  * Created by altitudelabs on 16/4/2016.

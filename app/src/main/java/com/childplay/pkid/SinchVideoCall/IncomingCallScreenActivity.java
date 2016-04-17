@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.altitudelabs.pkid.R;
+import com.childplay.pkid.R;
 import com.sinch.android.rtc.PushPair;
 import com.sinch.android.rtc.calling.Call;
 import com.sinch.android.rtc.calling.CallEndCause;

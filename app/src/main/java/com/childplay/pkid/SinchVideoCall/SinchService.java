@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.app.Service;
 import android.content.Intent;

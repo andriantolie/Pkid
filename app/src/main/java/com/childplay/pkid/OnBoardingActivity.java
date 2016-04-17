@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid;
+package com.childplay.pkid;
 
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -14,8 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.example.altitudelabs.pkid.SinchVideoCall.BaseActivity;
-import com.example.altitudelabs.pkid.SinchVideoCall.SinchService;
+import com.childplay.pkid.SinchVideoCall.BaseActivity;
+import com.childplay.pkid.SinchVideoCall.SinchService;
 import com.sinch.android.rtc.SinchError;
 
 
@@ -73,7 +73,7 @@ public class OnBoardingActivity extends BaseActivity implements SurfaceHolder.Ca
         //Displays a video file.
         mVideoView = (VideoView) findViewById(R.id.videoview);
 
-        String uriPath = "android.resource://com.example.altitudelabs.pkid/" + R.raw.video;
+        String uriPath = "android.resource://com.childplay.pkid/" + R.raw.video;
         Uri uri = Uri.parse(uriPath);
         mVideoView.setVideoURI(uri);
         mVideoView.requestFocus();

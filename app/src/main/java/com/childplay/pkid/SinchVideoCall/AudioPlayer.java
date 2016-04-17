@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -9,7 +9,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.altitudelabs.pkid.R;
+import com.childplay.pkid.R;
 
 import java.io.FileInputStream;
 import java.io.IOException;

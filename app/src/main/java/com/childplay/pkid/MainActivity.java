@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid;
+package com.childplay.pkid;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

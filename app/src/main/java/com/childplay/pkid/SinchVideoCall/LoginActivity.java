@@ -1,4 +1,4 @@
-package com.example.altitudelabs.pkid.SinchVideoCall;
+package com.childplay.pkid.SinchVideoCall;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.altitudelabs.pkid.R;
+import com.childplay.pkid.R;
 import com.sinch.android.rtc.SinchError;
 
 public class LoginActivity extends BaseActivity implements SinchService.StartFailedListener {
