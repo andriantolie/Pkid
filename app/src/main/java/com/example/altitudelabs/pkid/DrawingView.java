@@ -63,6 +63,9 @@ public class DrawingView extends View {
         }
     }
 
+    public void simulateFakeDrawing() {
+
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();

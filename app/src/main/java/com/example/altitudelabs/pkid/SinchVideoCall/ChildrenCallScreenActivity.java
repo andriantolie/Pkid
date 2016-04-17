@@ -1,5 +1,6 @@
 package com.example.altitudelabs.pkid.SinchVideoCall;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChildrenCallScreenActivity extends BaseActivity implements SinchService.StartFailedListener, View.OnClickListener {
-
+    private ProgressDialog mSpinner;
     @Override
     public void onClick(View v) {
         mColorButton1.setImageResource(R.drawable.green_75);
@@ -41,6 +42,12 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
         }else if (v.getId() == R.id.btn_color_3) {
             mColorButton3.setImageResource(R.drawable.blue);
             mDrawingView.getDrawingController().setPaintColor(Color.BLUE);
+
+//            try {
+//                Utils.saveDrawingBitmapToFile(this, Utils.createBitmapFromView(mDrawingView),true);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -121,6 +128,10 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
         mColorButton3 = (ImageButton)findViewById(R.id.btn_color_3);
         mColorButton3.setOnClickListener(this);
 
+        mSpinner = new ProgressDialog(ChildrenCallScreenActivity.this);
+        mSpinner.setTitle("Loading");
+        mSpinner.setMessage("Please wait...");
+        mSpinner.show();
     }
 
     @Override
@@ -252,12 +263,16 @@ public class ChildrenCallScreenActivity extends BaseActivity implements SinchSer
             audioController.enableSpeaker();
             mCallStart = System.currentTimeMillis();
             Log.d(TAG, "Call offered video: " + call.getDetails().isVideoOffered());
+            if (mSpinner != null) {
+                mSpinner.dismiss();
+            }
         }
 
         @Override
         public void onCallProgressing(Call call) {
             Log.d(TAG, "Call progressing");
             mAudioPlayer.playProgressTone();
+
         }
 
         @Override

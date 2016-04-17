@@ -22,6 +22,7 @@ public class ParentMainActivity extends BaseActivity implements SinchService.Sta
         getSinchServiceInterface().setStartListener(this);
         if (!getSinchServiceInterface().isStarted()) {
             getSinchServiceInterface().startClient("parent");
+
         } else {
             getSinchServiceInterface().stopClient();
             getSinchServiceInterface().startClient("parent");

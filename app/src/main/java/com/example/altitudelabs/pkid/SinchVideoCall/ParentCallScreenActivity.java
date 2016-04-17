@@ -1,5 +1,6 @@
 package com.example.altitudelabs.pkid.SinchVideoCall;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.altitudelabs.pkid.R;
 import com.sinch.android.rtc.AudioController;
@@ -29,11 +31,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ParentCallScreenActivity extends BaseActivity implements OnClickListener {
-
+    private ProgressDialog mSpinner;
     static final String TAG = CallScreenActivity.class.getSimpleName();
     static final String CALL_START_TIME = "callStartTime";
     static final String ADDED_LISTENER = "addedListener";
 
+    private ImageButton mTransparantButton;
     private AudioPlayer mAudioPlayer;
     private Timer mTimer;
     private UpdateCallDurationTask mDurationTask;
@@ -46,6 +49,8 @@ public class ParentCallScreenActivity extends BaseActivity implements OnClickLis
     private ImageButton mColorButton1;
     private ImageButton mColorButton2;
     private ImageButton mColorButton3;
+
+    private ImageView mHiddenLayer;
 
     @Override
     public void onClick(View v) {
@@ -102,6 +107,16 @@ public class ParentCallScreenActivity extends BaseActivity implements OnClickLis
         mColorButton2.setOnClickListener(this);
         mColorButton3 = (ImageButton)findViewById(R.id.btn_color_3);
         mColorButton3.setOnClickListener(this);
+
+        mHiddenLayer = (ImageView)findViewById(R.id.view_hidden_layer);
+        mTransparantButton = (ImageButton)findViewById(R.id.btn_transparent);
+        mTransparantButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHiddenLayer.bringToFront();
+                mHiddenLayer.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -241,12 +256,19 @@ public class ParentCallScreenActivity extends BaseActivity implements OnClickLis
             audioController.enableSpeaker();
             mCallStart = System.currentTimeMillis();
             Log.d(TAG, "Call offered video: " + call.getDetails().isVideoOffered());
+            if (mSpinner != null) {
+                mSpinner.dismiss();
+            }
         }
 
         @Override
         public void onCallProgressing(Call call) {
             Log.d(TAG, "Call progressing");
             mAudioPlayer.playProgressTone();
+            mSpinner = new ProgressDialog(ParentCallScreenActivity.this);
+            mSpinner.setTitle("Loading");
+            mSpinner.setMessage("Please wait...");
+            mSpinner.show();
         }
 
         @Override

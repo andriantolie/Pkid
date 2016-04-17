@@ -25,7 +25,7 @@ public class ChildrenMainActivity extends BaseActivity implements SinchService.S
         if (!getSinchServiceInterface().isStarted()) {
             getSinchServiceInterface().startClient("children");
             mSpinner = new ProgressDialog(this);
-            mSpinner.setTitle("Logging in");
+            mSpinner.setTitle("Loading");
             mSpinner.setMessage("Please wait...");
             mSpinner.show();
         } else {
